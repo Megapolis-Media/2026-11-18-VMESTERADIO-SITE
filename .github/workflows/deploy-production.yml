@@ -1,0 +1,39 @@
+name: Deploy production
+
+on:
+  push:
+    branches: [master]
+
+permissions: {}
+
+concurrency:
+  group: vmesteradio-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: production
+      url: https://vmesteradio.knzteam.ru/
+    steps:
+      - name: Publish the master revision
+        shell: bash
+        env:
+          DEPLOY_KEY: ${{ secrets.VMESTERADIO_DEPLOY_KEY }}
+          SSH_KNOWN_HOSTS: ${{ vars.VMESTERADIO_SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_KEY"
+          test -n "$SSH_KNOWN_HOSTS"
+          umask 077
+          ssh_dir="$(mktemp -d)"
+          trap 'rm -f -- "$ssh_dir/key" "$ssh_dir/known_hosts"; rmdir -- "$ssh_dir"' EXIT
+          printf '%s\n' "$DEPLOY_KEY" | tr -d '\r' > "$ssh_dir/key"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > "$ssh_dir/known_hosts"
+          ssh -T -i "$ssh_dir/key" -o BatchMode=yes -o IdentitiesOnly=yes \
+            -o ConnectTimeout=15 -o StrictHostKeyChecking=yes \
+            -o HostKeyAlgorithms=ssh-ed25519 -o GlobalKnownHostsFile=/dev/null \
+            -o "UserKnownHostsFile=$ssh_dir/known_hosts" \
+            vmesteradio-deploy@194.58.103.93 "$GITHUB_SHA"
