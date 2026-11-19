@@ -1,0 +1,112 @@
+html {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #005032;
+  font-family: system-ui, sans-serif;
+}
+
+.broadcast {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(#e7effc, #fff);
+}
+
+.broadcast picture,
+.broadcast picture img {
+  width: 100%;
+}
+
+.broadcast img {
+  display: block;
+  height: auto;
+  font: inherit;
+  text-align: center;
+}
+
+.broadcast .broadcast__decoration {
+  position: absolute;
+  inset: 0;
+}
+
+.broadcast__title,
+.broadcast__schedule,
+.broadcast__invitation,
+.broadcast__radio,
+.broadcast__ornament {
+  position: absolute;
+  margin: 0;
+}
+
+.broadcast__radio {
+  bottom: 3%;
+  left: 1.8%;
+  width: 25.5%;
+}
+
+.broadcast__ornament {
+  bottom: 3.6%;
+  left: 53%;
+  width: 11.6%;
+}
+
+/* Text positions follow the original 1920 × 1080 and 1080 × 1920 frames. */
+.broadcast__title {
+  top: 22.593%;
+  left: 23.958%;
+  width: 52.292%;
+}
+
+.broadcast__schedule {
+  top: 43.333%;
+  left: 29.323%;
+  width: 41.198%;
+  font-weight: 700;
+}
+
+.broadcast__invitation {
+  top: 58.426%;
+  left: 30.208%;
+  width: 39.635%;
+  font-weight: 700;
+}
+
+@media (max-width: 640px), (orientation: portrait) {
+  .broadcast {
+    aspect-ratio: 9 / 16;
+  }
+
+  .broadcast__radio {
+    bottom: 2.7%;
+    left: 3.4%;
+    width: 50%;
+  }
+
+  .broadcast__ornament {
+    bottom: 18%;
+    right: 9%;
+    left: auto;
+    width: 26%;
+  }
+
+  .broadcast__title {
+    top: 31.25%;
+    left: 11.111%;
+    width: 77.685%;
+  }
+
+  .broadcast__schedule {
+    top: 47.604%;
+    left: 13.056%;
+    width: 73.657%;
+  }
+
+  .broadcast__invitation {
+    top: 56.094%;
+    left: 14.63%;
+    width: 70.787%;
+  }
+}
