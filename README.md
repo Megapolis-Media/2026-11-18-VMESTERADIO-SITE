@@ -12,7 +12,7 @@ docker compose up --build -d
 
 ## Выкладка
 
-После обновления `master` GitHub Actions запускает выкладку на [vmesteradio.knzteam.ru](https://vmesteradio.knzteam.ru/). Для запуска требуется подтверждение владельца в environment `production`. Сервер публикует только файлы из `public/` для актуального коммита `master`.
+После обновления `master` GitHub Actions запускает выкладку на [vmesteradio.ru](https://vmesteradio.ru/). Для запуска требуется подтверждение владельца в environment `production`. Сервер публикует только файлы из `public/` для актуального коммита `master`.
 
 ## Ветки
 
