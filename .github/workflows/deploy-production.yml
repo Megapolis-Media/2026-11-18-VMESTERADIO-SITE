@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 10
     environment:
       name: production
-      url: https://vmesteradio.knzteam.ru/
+      url: https://vmesteradio.ru/
     steps:
       - name: Publish the master revision
         shell: bash
